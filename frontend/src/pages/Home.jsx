@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Globe, Shield, Smartphone, Video, Calendar, Headphones, Users, MapPin, Clock, DollarSign, Award, Star } from 'lucide-react';
 
 export default function Home() {
@@ -28,9 +29,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-wrap gap-4 mb-12">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-semibold transition text-lg">
+            <Link
+              to="/signup"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-semibold transition text-lg"
+            >
               Start Your Journey
-            </button>
+            </Link>
             <button className="bg-white text-teal-600 hover:bg-gray-100 px-10 py-4 rounded-lg font-semibold transition text-lg">
               Explore Features
             </button>
@@ -207,9 +211,12 @@ export default function Home() {
               <Users className="w-20 h-20 mx-auto mb-6 opacity-80" />
               <h3 className="text-3xl md:text-4xl font-bold mb-4">Join 50,000+ Travelers</h3>
               <p className="text-lg mb-6 opacity-90">Start your journey with the smartest travel assistant</p>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-semibold transition text-lg">
+              <Link
+                to="/signup"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-semibold transition text-lg inline-block"
+              >
                 Get Started Free
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -231,9 +238,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-semibold transition text-lg">
+            <Link
+              to="/signup"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-semibold transition text-lg"
+            >
               Get Started Free
-            </button>
+            </Link>
             <button className="bg-white text-teal-600 hover:bg-gray-100 px-10 py-4 rounded-lg font-semibold transition text-lg">
               Watch Demo
             </button>

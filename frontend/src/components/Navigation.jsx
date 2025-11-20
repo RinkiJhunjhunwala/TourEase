@@ -44,9 +44,12 @@ export default function Navigation() {
 
                     {/* CTA Button */}
                     <div className="hidden md:flex">
-                        <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition">
+                        <Link
+                            to="/signup"
+                            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition"
+                        >
                             Get Started
-                        </button>
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -78,9 +81,13 @@ export default function Navigation() {
                                 {item.label}
                             </Link>
                         ))}
-                        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition">
+                        <Link
+                            to="/signup"
+                            className="block w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition text-center"
+                            onClick={() => setIsOpen(false)}
+                        >
                             Get Started
-                        </button>
+                        </Link>
                     </div>
                 )}
             </div>
