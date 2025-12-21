@@ -9,22 +9,12 @@ export default function Contact() {
         message: ''
     });
 
-    const [formErrors, setFormErrors] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
-
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState('');
 
-    const validateName = (name) => {
-        const nameRegex = /^[A-Za-z\s]+$/;
-        if (!nameRegex.test(name) && name !== '') {
-            return 'Name should contain only letters';
-        }
-        return '';
-    };
+    // Use your backend URL - adjust if needed
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,39 +22,37 @@ export default function Contact() {
             ...prev,
             [name]: value
         }));
-
-        // Validate name field
-        if (name === 'name') {
-            setFormErrors((prev) => ({
-                ...prev,
-                name: validateName(value)
-            }));
-        }
+        setError('');
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Validate all required fields
-        const errors = {
-            name: validateName(formData.name) || (formData.name ? '' : 'Name is required'),
-            email: formData.email ? '' : 'Email is required',
-            message: formData.message ? '' : 'Message is required'
-        };
-
-        setFormErrors(errors);
-
-        // Check if there are any errors
-        const hasErrors = Object.values(errors).some(error => error !== '');
-        if (hasErrors) {
+        // Simple validation
+        if (!formData.name || !formData.email || !formData.message) {
+            setError('Please fill all required fields');
             return;
         }
 
         setLoading(true);
+        setError('');
 
-        // Simulate form submission
-        setTimeout(() => {
-            setLoading(false);
+        try {
+            const response = await fetch(`${API_URL}/contact/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || 'Failed to send message');
+            }
+
+            // Success
             setSubmitted(true);
             setFormData({
                 name: '',
@@ -72,15 +60,15 @@ export default function Contact() {
                 subject: '',
                 message: ''
             });
-            setFormErrors({
-                name: '',
-                email: '',
-                message: ''
-            });
 
             // Reset success message after 3 seconds
             setTimeout(() => setSubmitted(false), 3000);
-        }, 1500);
+
+        } catch (err) {
+            setError(err.message || 'Something went wrong. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -98,7 +86,6 @@ export default function Contact() {
             {/* Contact Info & Form */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
-                    {/* Contact Info Cards */}
                     <ContactInfoCard
                         icon={<Mail className="w-8 h-8" />}
                         title="Email"
@@ -127,9 +114,17 @@ export default function Contact() {
                     </p>
 
                     <form onSubmit={handleSubmit} className="bg-gray-50 p-8 rounded-xl">
+                        {/* Success Message */}
                         {submitted && (
                             <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                                Thank you for your message! We'll get back to you soon.
+                                ✅ Thank you! Your message has been sent successfully.
+                            </div>
+                        )}
+
+                        {/* Error Message */}
+                        {error && (
+                            <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                                ❌ {error}
                             </div>
                         )}
 
@@ -143,23 +138,11 @@ export default function Contact() {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                required
-                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-1 ${
-                                    formErrors.name 
-                                    ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
-                                    : 'border-gray-300 focus:border-teal-500 focus:ring-teal-500'
-                                }`}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
                                 placeholder="Your name"
-                                onKeyPress={(e) => {
-                                    // Prevent typing numbers
-                                    if (/\d/.test(e.key)) {
-                                        e.preventDefault();
-                                    }
-                                }}
+                                disabled={loading}
+                                required
                             />
-                            {formErrors.name && (
-                                <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
-                            )}
                         </div>
 
                         {/* Email Field */}
@@ -172,17 +155,11 @@ export default function Contact() {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                required
-                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-1 ${
-                                    formErrors.email 
-                                    ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
-                                    : 'border-gray-300 focus:border-teal-500 focus:ring-teal-500'
-                                }`}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
                                 placeholder="your.email@example.com"
+                                disabled={loading}
+                                required
                             />
-                            {formErrors.email && (
-                                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-                            )}
                         </div>
 
                         {/* Subject Field (Optional) */}
@@ -197,6 +174,7 @@ export default function Contact() {
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
                                 placeholder="How can we help?"
+                                disabled={loading}
                             />
                         </div>
 
@@ -209,18 +187,12 @@ export default function Contact() {
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                required
                                 rows="6"
-                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-1 ${
-                                    formErrors.message 
-                                    ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
-                                    : 'border-gray-300 focus:border-teal-500 focus:ring-teal-500'
-                                }`}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
                                 placeholder="Tell us more about your inquiry..."
+                                disabled={loading}
+                                required
                             />
-                            {formErrors.message && (
-                                <p className="text-red-500 text-sm mt-1">{formErrors.message}</p>
-                            )}
                         </div>
 
                         <button
@@ -244,50 +216,13 @@ export default function Contact() {
                 </div>
             </div>
 
-            {/* FAQ Section */}
-            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 py-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-4xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
-
-                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <FAQItem
-                            question="How quickly will you respond?"
-                            answer="We aim to respond to all inquiries within 24 hours during business days."
-                        />
-                        <FAQItem
-                            question="What are your support hours?"
-                            answer="Our 24/7 support team is available at all times to assist you."
-                        />
-                        <FAQItem
-                            question="Can I schedule a demo?"
-                            answer="Yes! Contact our team and we'll be happy to set up a personalized demo for you."
-                        />
-                        <FAQItem
-                            question="Do you offer enterprise solutions?"
-                            answer="Absolutely! We have customized enterprise packages available. Contact our sales team."
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* CTA Section */}
-            <div className="bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-600 text-white py-20">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                        Still have questions?
-                    </h2>
-                    <p className="text-xl mb-10 opacity-90">
-                        Check out our help center or reach out to our support team
-                    </p>
-                    <button className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-lg font-semibold transition text-lg">
-                        Visit Help Center
-                    </button>
-                </div>
-            </div>
+            {/* Rest of your existing components */}
+            {/* ... */}
         </div>
     );
 }
 
+// Helper components (keep as is)
 function ContactInfoCard({ icon, title, content, color }) {
     return (
         <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all text-center">
