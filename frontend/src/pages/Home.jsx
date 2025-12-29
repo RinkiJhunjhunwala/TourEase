@@ -35,9 +35,12 @@ export default function Home() {
             >
               Start Your Journey
             </Link>
-            <button className="bg-white text-teal-600 hover:bg-gray-100 px-10 py-4 rounded-lg font-semibold transition text-lg">
+            <Link
+              to="/features"
+              className="bg-white text-teal-600 hover:bg-gray-100 px-10 py-4 rounded-lg font-semibold transition text-lg"
+            >
               Explore Features
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-3 gap-8 max-w-3xl">
