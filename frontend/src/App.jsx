@@ -18,6 +18,8 @@ import Contact from './pages/Contact';
 import Signup from './pages/signup';
 import Login from './pages/Login';
 import AddFavorite from './pages/AddFavorite';
+import ScrollToTopButton from "./components/common/ScrollToTop";
+
 
 function ProtectedRoute({ children }) {
   const isAuthenticated = Boolean(localStorage.getItem('token'));
@@ -37,6 +39,7 @@ function AppRoutes() {
   return (
     <>
       {showNavigation && <Navigation />}
+      <ScrollToTopButton />
       <div className={showNavigation ? 'pt-16' : ''}>
         <Routes>
           <Route path="/" element={<Home />} />
