@@ -132,8 +132,8 @@ export default function Contact() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-            {/* Hero Section */}
-            <div className="relative bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-600 dark:from-purple-700 dark:via-indigo-700 dark:to-purple-800 text-white py-24 md:py-32 overflow-hidden">
+            {/* Hero Section - Centered & Balanced */}
+            <div className="relative bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-600 dark:from-purple-700 dark:via-indigo-700 dark:to-purple-800 text-white py-20 md:py-24 overflow-hidden">
                 {/* Animated Background Orbs */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute top-0 -left-4 w-72 h-72 bg-teal-300 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-30 animate-blob"></div>
@@ -148,55 +148,56 @@ export default function Contact() {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 dark:to-black/30"></div>
                 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white tracking-tight drop-shadow-lg">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-white tracking-tight drop-shadow-lg">
                         Get in Touch
                     </h1>
-                    <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto text-white/95 dark:text-white/90 leading-relaxed drop-shadow-md">
-                        Have a question or feedback? We'd love to hear from you. Our team is here to help!
+                    <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-white/90 dark:text-white/85 leading-relaxed drop-shadow-md">
+                        Have a question or feedback? We'd love to hear from you.
                     </p>
                 </div>
             </div>
 
-            {/* Contact Info Cards */}
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 z-10 pb-16">
-                {/* Decorative Background Elements */}
-                <div className="absolute inset-x-0 top-0 h-full pointer-events-none overflow-hidden -z-10">
-                    <div className="absolute top-40 left-10 w-64 h-64 bg-teal-100 dark:bg-teal-950/20 rounded-full filter blur-3xl opacity-20"></div>
-                    <div className="absolute top-60 right-10 w-80 h-80 bg-cyan-100 dark:bg-indigo-950/20 rounded-full filter blur-3xl opacity-20"></div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24 relative">
+            {/* Contact Info - Centered Elegant Cards */}
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 z-10 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                     <ContactInfoCard
-                        icon={<Mail className="w-8 h-8" />}
+                        icon={<Mail className="w-7 h-7" />}
                         title="Email"
                         content="support@tourease.com"
                         href="mailto:support@tourease.com"
                     />
                     <ContactInfoCard
-                        icon={<Phone className="w-8 h-8" />}
+                        icon={<Phone className="w-7 h-7" />}
                         title="Phone"
                         content="+1 (555) 123-4567"
                         href="tel:+15551234567"
                     />
                     <ContactInfoCard
-                        icon={<MapPin className="w-8 h-8" />}
+                        icon={<MapPin className="w-7 h-7" />}
                         title="Address"
                         content="San Francisco, CA, USA"
                     />
                 </div>
+            </div>
 
-                {/* Contact Form */}
-                <div className="max-w-3xl mx-auto">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-                            Send us a Message
-                        </h2>
-                        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-                            Fields marked with <span className="text-red-500 font-semibold">*</span> are required
-                        </p>
-                    </div>
+            {/* Main Content - Centered Form Section */}
+            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+                {/* Decorative Background Elements */}
+                <div className="absolute inset-x-0 top-0 h-full pointer-events-none overflow-hidden -z-10">
+                    <div className="absolute top-20 -left-40 w-80 h-80 bg-teal-100 dark:bg-teal-950/20 rounded-full filter blur-3xl opacity-20"></div>
+                    <div className="absolute top-40 -right-40 w-96 h-96 bg-cyan-100 dark:bg-indigo-950/20 rounded-full filter blur-3xl opacity-20"></div>
+                </div>
 
-                    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-8 sm:p-10 md:p-12 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800">
+                <div className="text-center mb-10">
+                    <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-gray-900 dark:text-white">
+                        Send us a Message
+                    </h2>
+                    <p className="text-base text-gray-600 dark:text-gray-400">
+                        Fields marked with <span className="text-red-500 font-semibold">*</span> are required
+                    </p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800">
                         {/* Success Message */}
                         {submitted && (
                             <div className="mb-8 p-5 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-l-4 border-green-500 dark:border-green-400 text-green-800 dark:text-green-300 rounded-lg shadow-sm flex items-start gap-3">
@@ -360,11 +361,9 @@ export default function Contact() {
                         </button>
                     </form>
                 </div>
-            </div>
 
-
-            {/* FAQ Section */}
-            <div className="relative bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 py-24 overflow-hidden">
+            {/* FAQ Section - Centered & Balanced */}
+            <div className="relative bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 py-20 overflow-hidden">
                 {/* Background Decorative Elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute top-0 left-0 w-96 h-96 bg-teal-200 dark:bg-teal-950 rounded-full filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
@@ -376,16 +375,16 @@ export default function Contact() {
                 <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]" style={{backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)', backgroundSize: '50px 50px'}}></div>
                 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 text-gray-900 dark:text-white">
+                    <div className="text-center mb-14">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                             Frequently Asked Questions
                         </h2>
                         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                            Quick answers to common questions. Can't find what you're looking for? Contact our support team.
+                            Quick answers to common questions. Can't find what you're looking for?
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                         <FAQItem
                             question="How quickly will you respond?"
                             answer="We aim to respond to all inquiries within 24 hours during business days. For urgent matters, our 24/7 support team is available."
@@ -409,8 +408,8 @@ export default function Contact() {
             {/* Smooth Transition Divider */}
             <div className="h-1 bg-gradient-to-r from-transparent via-teal-200 dark:via-indigo-800 to-transparent opacity-50"></div>
 
-            {/* CTA Section - "Still have questions?" */}
-            <div className="relative bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-600 dark:from-purple-700 dark:via-indigo-700 dark:to-purple-800 text-white py-24 md:py-32 overflow-hidden">
+            {/* CTA Section - Centered & Elegant */}
+            <div className="relative bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-600 dark:from-purple-700 dark:via-indigo-700 dark:to-purple-800 text-white py-20 overflow-hidden">
                 {/* Animated Background Orbs */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute -top-4 left-1/4 w-96 h-96 bg-teal-300 dark:bg-purple-500 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-40 animate-blob"></div>
@@ -424,14 +423,14 @@ export default function Contact() {
                 {/* Dot Pattern */}
                 <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
                 
-                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white tracking-tight drop-shadow-lg">
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 text-white tracking-tight drop-shadow-lg">
                         Still have questions?
                     </h2>
-                    <p className="text-lg sm:text-xl md:text-2xl mb-12 text-white/95 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                    <p className="text-base sm:text-lg md:text-xl mb-10 text-white/90 max-w-xl mx-auto leading-relaxed drop-shadow-md">
                         Check out our help center or reach out to our support team
                     </p>
-                    <button className="bg-white hover:bg-gray-50 text-teal-600 dark:text-indigo-600 px-12 py-5 rounded-xl font-bold transition-all duration-200 text-lg shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-95">
+                    <button className="bg-white hover:bg-gray-50 text-teal-600 dark:text-indigo-600 px-10 py-4 rounded-xl font-bold transition-all duration-200 text-base shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-95">
                         Visit Help Center
                     </button>
                 </div>
@@ -440,15 +439,15 @@ export default function Contact() {
     );
 }
 
-// Unified Contact Info Card Component
+// Elegant Centered Contact Info Card Component
 function ContactInfoCard({ icon, title, content, href }) {
     const CardContent = (
-        <div className="bg-white dark:bg-gray-900 p-10 rounded-2xl shadow-lg border-2 border-gray-200 dark:border-gray-800 hover:shadow-2xl hover:border-teal-200 dark:hover:border-indigo-700 hover:-translate-y-1 transition-all duration-300 text-center group h-full">
-            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 text-teal-600 dark:from-indigo-950 dark:to-purple-950 dark:text-indigo-400 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md">
+        <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 hover:shadow-xl hover:border-teal-300 dark:hover:border-indigo-700 hover:-translate-y-1 transition-all duration-300 text-center group h-full">
+            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 text-teal-600 dark:from-indigo-950 dark:to-purple-950 dark:text-indigo-400 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md">
                 {icon}
             </div>
-            <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">{title}</h3>
-            <p className={`text-base text-gray-600 dark:text-gray-400 font-medium ${href ? 'group-hover:text-teal-600 dark:group-hover:text-indigo-400 transition-colors' : ''}`}>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">{title}</h3>
+            <p className={`text-sm text-gray-600 dark:text-gray-400 font-medium ${href ? 'group-hover:text-teal-600 dark:group-hover:text-indigo-400 transition-colors' : ''}`}>
                 {content}
             </p>
         </div>
@@ -471,9 +470,9 @@ function FAQItem({ question, answer }) {
 
     return (
         <div 
-            className={`bg-white dark:bg-gray-900 p-7 rounded-2xl shadow-md border-2 transition-all duration-300 ${
+            className={`bg-white dark:bg-gray-900 p-7 rounded-2xl shadow-md border transition-all duration-300 ${
                 isOpen 
-                    ? 'border-teal-300 dark:border-indigo-700 shadow-xl ring-4 ring-teal-100 dark:ring-indigo-900/50 scale-[1.02]' 
+                    ? 'border-teal-300 dark:border-indigo-700 shadow-xl ring-4 ring-teal-100 dark:ring-indigo-900/50' 
                     : 'border-gray-200 dark:border-gray-800 hover:border-teal-200 dark:hover:border-indigo-800 hover:shadow-lg'
             }`}
         >
