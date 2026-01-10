@@ -1,7 +1,4 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL ??
-  'https://tourease-2.onrender.com/api';
-
+import { API_BASE_URL } from "../config/auth";
 
 export const api = {
   async request(endpoint, options = {}) {

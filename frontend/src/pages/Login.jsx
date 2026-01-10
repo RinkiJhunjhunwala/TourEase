@@ -4,10 +4,6 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { api } from "../services/api";
 import { API_BASE_URL } from "../config/auth";
 
-const handleGoogleLogin = () => {
-  window.location.href = `${API_BASE_URL}/api/auth/google`;
-};
-
 export default function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

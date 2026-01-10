@@ -36,6 +36,7 @@ Create a `.env` file in the root folder:
 
 MONGODB_URI=your-mongodb-uri
 PORT=3000
+FRONTEND_URL=https://your-frontend-domain.example
 
 
 ## 5. Run the Project

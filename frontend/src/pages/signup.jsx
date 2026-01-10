@@ -71,6 +71,7 @@ export default function Signup() {
     return Object.keys(newErrors).length === 0;
   };
   const handleGoogleSignup = () => {
+    // API_BASE_URL already includes the /api prefix
     window.location.href = `${API_BASE_URL}/auth/google`;
   };
   const handleSubmit = async (e) => {
